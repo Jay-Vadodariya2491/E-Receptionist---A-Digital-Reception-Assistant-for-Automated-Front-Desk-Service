@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Registration</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .event-registration-container {
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: #3498db;
+            border-radius: 0;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .navbar-brand:hover,
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Appointment Registration</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard_doctor.html">Dashboard</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="appointment.html">Appointment</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="settings.html">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Event Registration Content -->
+    <div class="event-registration-container">
+        <h2>Appointment Registration</h2>
+        <p>Provide details for the appointment registration:</p>
+
+        <!-- Event Details Form -->
+        <form id="event-details-form">
+            <h2>Appointment Details</h2>
+            <div class="form-group">
+                <label for="appointment-date">Appointment Date:</label>
+                <input type="date" class="form-control" id="appointment-date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="appointment-day">Appointment Day:</label>
+                <input type="text" class="form-control" id="appointment-day" required>
+            </div>
+
+            <div class="form-group">
+                <label for="available-time">Available Time:</label>
+                <input type="text" class="form-control" id="available-time" required>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="additional-details">Additional Details:</label>
+                <textarea class="form-control" id="additional-details" rows="3"></textarea>
+            </div> -->
+
+            <button type="button" class="btn btn-primary" onclick="completeRegistration()">Register</button>
+        </form>
+
+        
+    </div>
+
+    <!-- Add Bootstrap JavaScript and jQuery links -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Function to show the payment form
+        function showPaymentForm() {
+            document.getElementById('event-details-form').style.display = 'none';
+          //  document.getElementById('payment-form').style.display = 'block';
+        }
+
+        // Function to complete the registration
+        function completeRegistration() {
+            // Retrieve input values
+            const appointmentDate = document.getElementById('appointment-date').value;
+            const appointmentDay = document.getElementById('appointment-day').value;
+            const availableTime = document.getElementById('available-time').value;
+          //  const eventDetails = document.getElementById('additional-details').value;
+
+            // Redirect to dashboard with query parameters
+            const url = `dashboard_doctor.html?script1=true&appointmentDate=${appointmentDate}&appointmentDay=${appointmentDay}&availableTime=${availableTime}`;
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>

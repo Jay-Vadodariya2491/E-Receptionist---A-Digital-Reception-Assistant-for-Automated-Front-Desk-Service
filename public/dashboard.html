@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .nav-link {
+            color: #fff;
+        }
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px; /* Add border radius for rounded corners */
+            overflow: hidden; /* Hide overflow content */
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            text-align: center; /* Center align table cells */
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        /* Button styling */
+        .btn-book,.btn-pay {
+            background-color: #af4c4c; /* Green */
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn-book:hover {
+            background-color: #a04545; /* Dark green */
+        }
+
+
+
+
+
+
+
+/* Style for the form container */
+#specializationForm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form title */
+.text-3xl {
+    color: #3182ce;
+}
+
+/* Style for the checkboxes and labels */
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid #3182ce;
+    border-radius: 5px;
+    margin: 5px;
+    transition: all 0.3s;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: #3182ce;
+    color: white;
+}
+
+/* Style for the submit button */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #245e9d;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Chatbot */
+
+#chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border: #007bff 2px  solid;
+    border-radius: 50%;
+    background-color: white; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+#chat-icon img {
+    width: 80%;
+    height: auto;
+}
+
+#chat-icon:hover {
+    transform: scale(1.1); /* Optional: Add hover effect */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Header styling */
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Form and checkboxes styling */
+        #specializationForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 50px;
+        }
+
+        /* Media query for responsive design */
+        @media (max-width: 768px) {
+            /* Adjust styles for smaller screens */
+        }
+
+
+
+        
+
+
+/* Additional CSS for a more catchy appearance */
+
+/* Navbar */
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-toggler {
+    border-color: #fff;
+}
+
+/* Form container */
+#specializationForm {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox label styling */
+input[type="checkbox"] + label {
+    background-color: #f2f2f2;
+    color: #333;
+    border: 2px solid #3182ce;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin: 5px;
+    transition: all 0.3s;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: #3182ce;
+    color: #fff;
+}
+
+/* Submit button styling */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Table styling */
+table {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+}
+
+/* Footer styling */
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.footer p {
+    margin: 10px 0;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #007bff;
+}
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+    <link rel="stylesheet" href="style_table.css">
+    <link rel="stylesheet" href="style_footer.css">
+
+
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Patient Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="patientName"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div>
+
+
+        <div>
+            <h2 class="text-3xl font-semibold text-center  mb-4">Patient Dashboard</h2>
+            <form id="specializationForm" class="mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+                    <div class="flex items-center">
+                        <input type="checkbox" id="generalPhysician" name="specialization" value="General Physician" class="mr-2">
+                        <label for="generalPhysician">General Physician</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="skinHair" name="specialization" value="Skin and Hair" class="mr-2">
+                        <label for="skinHair">Skin and Hair</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="womensHealth" name="specialization" value="Women's Health" class="mr-2">
+                        <label for="womensHealth">Women's Health</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="dentalCare" name="specialization" value="Dental Care" class="mr-2">
+                        <label for="dentalCare">Dental Care</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="childSpecialist" name="specialization" value="Child Specialist" class="mr-2">
+                        <label for="childSpecialist">Child Specialist</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="earNoseThroat" name="specialization" value="Ear-Nose-Throat" class="mr-2">
+                        <label for="earNoseThroat">Ear-Nose-Throat</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="mentalWellness" name="specialization" value="Mental Wellness" class="mr-2">
+                        <label for="mentalWellness">Mental Wellness</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="bonesJoints" name="specialization" value="Bones & Joints" class="mr-2">
+                        <label for="bonesJoints">Bones & Joints</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="cardiac" name="specialization" value="Cardiac" class="mr-2">
+                        <label for="cardiac">Cardiac</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="neuro" name="specialization" value="Neuro" class="mr-2">
+                        <label for="neuro">Neuro</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="orthopedic" name="specialization" value="Orthopedic" class="mr-2">
+                        <label for="orthopedic">Orthopedic</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            </form>
+        </div>
+
+
+
+
+
+
+
+        <!-- Doctors List -->
+
+
+        <h3 class="text-xl font-semibold mb-2">Doctors List</h3>
+        <div id="dashboard-event-details">
+            <div class="table-wrapper">
+                <table class="fl-table" id="event-table-body">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Doctor Type</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="doctorsList"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- Doctor's Appointments -->
+
+        <h3 class="text-xl font-semibold mb-2">Doctor's Available Appointments</h3>
+        <div id="dashboard-event-details">
+            <div class="table-wrapper">
+                <table class="fl-table"  id="appointmentList">
+                    <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Day</th>
+                    <th>Dr_Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+
+
+        <!-- Patient's Booked Appointments -->
+
+
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Patient's Booked Appointments</h3>
+            <table id="appointmentList2" class="fl-table"></table>
+                    <tr>
+                    </tr>
+            </table>
+        </div>
+
+        
+
+                        <!-- <button id="startChat">Start Chat</button> -->
+
+
+                        <!-- Add a button to open the chatbot -->
+                <!-- <button id="openChatbotBtn" class="btn btn-primary mt-4">Open Chatbot</button> -->
+
+                <!-- Include a container to load the chatbot page/modal -->
+                <!-- <div id="chatbotContainer"></div> -->
+
+                <!-- Your existing HTML content for the dashboard -->
+
+
+
+    </div>
+
+    <!-- <div id="chat-icon">
+        <a href="https://chat-bot2-fley.onrender.com/">
+            <img src="chatbot.png" alt="Chat Icon" style="width: 40px; height: 40px;">
+        </a>
+    </div> -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script>
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+
+
+
+ async function book_apmt(P_name,Appointment_id,Appointment_Date,availableTime,Appointment_Day, D_name)
+            {
+
+            try {
+    // Perform AJAX request to the server register endpoint
+    const response = await fetch('/bookapmt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ P_name: P_name, Appointment_id: Appointment_id,Appointment_Date:  Appointment_Date, availableTime: availableTime,Appointment_Day: Appointment_Day,D_name:  D_name }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Response from server:', result);
+
+    // Handle success or error response from the server
+    if (result.success) {
+      console.log('Appointment is in queue , yet not Confirmed!!!');
+      alert(result.message);
+
+      
+     // window.location.reload(true);
+      
+    } else {
+      
+      console.error('Appointment Booking failed:', result.message);
+      alert(result.message);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    // Handle errors here
+    alert('An unexpected error occurred. Please try again later.');
+  }
+
+
+}
+
+
+
+
+async function delete_apmt(P_name,Appointment_id,Appointment_Date,availableTime,Appointment_Day, D_name)
+            {
+
+                fetch('/delete_apmt', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            Appointment_id: Appointment_id,
+            P_name: P_name,
+        }),
+    })
+    .then(response => response.json())
+    .then( data => {
+        
+        //console.log(data);
+        if (data.success) {
+           
+            alert("Booked Appointment deleted successfully!");
+            //const tableBody = document.getElementById('event-table-body');
+            //tableBody.innerHTML='';
+           // displayEntireTable();
+              // display_Table(data); // Update the displayed table
+
+        }
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
+
+
+}
+
+
+
+
+
+
+            // Display patient name from session storage
+            const patientName = sessionStorage.getItem('loggedInUser');
+            if (patientName) {
+                document.getElementById('patientName').textContent = `Welcome, ${patientName}!`;
+            }
+
+            // Mapping of specialization values to doctor types
+            const doctorTypes = {
+                "General Physician": "MS",
+                "Skin and Hair": "Dermatologist",
+                "Women's Health": "OB/GYN",
+                "Dental Care": "Dentist",
+                "Child Specialist": "Pediatrician",
+                "Ear-Nose-Throat": "ENT",
+                "Mental Wellness": "Psychiatrist",
+                "Bones & Joints": "Orthopedic Surgeon",
+                "Cardiac": "Cardiologist",
+                "Neuro": "Neurologist",
+                "Orthopedic": "Orthopedic Surgeon"
+            };
+
+
+           // print_fun();
+
+
+           // async function print_fun()
+            //{
+
+                //patient booked appointment table
+    
+
+            //}
+
+
+
+
+            // Function to print doctor's details and fetch appointments
+            async function printDoctorDetails(username, email) {
+
+
+
+    try {
+        const response = await fetch('/getDoctorsnew', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch doctors');
+        }
+
+        const appointments = await response.json();
+
+        // Display appointments in tabular format
+        const appointmentListContainer = document.getElementById('appointmentList');
+        appointmentListContainer.innerHTML = ''; // Clear previous appointments
+
+        // Create table
+        const table = document.createElement('table');
+        table.classList.add('w-full');
+
+        // Create table header
+        const tableHeader = document.createElement('thead');
+        tableHeader.innerHTML = `
+            <tr>
+                <th>Appointment ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Day</th>
+                <th>Dr_Name</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Payment</th>
+            </tr>
+        `;
+
+        // Create table body
+        const tableBody = document.createElement('tbody');
+
+        appointments.forEach(appointment => {
+            // Create table row for each appointment
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${appointment.Appointment_id}</td>
+                <td>${appointment.Appointment_Date}</td>
+                <td>${appointment.availableTime}</td>
+                <td>${appointment.Appointment_Day}</td>
+                <td>${appointment.loggedInUser}</td>
+                <td><button type="button" class="btn-book">Book</button></td>
+                <td><button type="button" class="btn-pay">Pay</button></td>
+            `;
+
+
+
+            const cell = row.insertCell(5);
+           if(appointment.isApproved == false)
+    {
+      const textNode = document.createTextNode('Pending');
+      cell.appendChild(textNode);
+    }
+    else{
+        const textNode = document.createTextNode('Approved');
+      cell.appendChild(textNode);
+    }
+
+
+            // Append row to table body
+            tableBody.appendChild(row);
+
+
+
+            const flag= sessionStorage.getItem("flag") 
+            
+        const button2 = row.querySelector('.btn-book');
+        button2.addEventListener('click', function () {
+
+            if(flag==0)
+        {
+                alert('Pay first!!!');
+        }
+        else
+        {
+
+            console.log(appointment.Appointment_id);
+            console.log(appointment.Appointment_Date);
+            console.log(appointment.availableTime);
+            console.log(appointment.Appointment_Day);
+
+            
+//const url2 = `dashboard_doctor.html?script7=true&Appid=${appointment.Appointment_id}&AppDate=${appointment.Appointment_Date}&AppTime=${appointment.availableTime}&AppDay=${appointment.Appointment_Day}`;
+//window.location.href = url2;    
+
+
+            book_apmt(patientName,appointment.Appointment_id,appointment.Appointment_Date,appointment.availableTime,appointment.Appointment_Day, username);
+
+        }
+
+        });
+        const button3 = row.querySelector('.btn-pay');
+
+        button3.addEventListener('click', function () {
+
+// console.log(appointment.Appointment_id);
+// console.log(appointment.Appointment_Date);
+// console.log(appointment.availableTime);
+// console.log(appointment.Appointment_Day);
+
+
+const url4 = `payment.html?script8=true&pat_name=${patientName}&Appid=${appointment.Appointment_id}&AppDate=${appointment.Appointment_Date}&AppTime=${appointment.availableTime}&AppDay=${appointment.Appointment_Day}&d_name=${appointment.loggedInUser}&app_day=${appointment.Appointment_Day}`;
+window.location.href = url4;    
+
+
+// book_apmt(patientName,appointment.Appointment_id,appointment.Appointment_Date,appointment.availableTime,appointment.Appointment_Day, username);
+
+
+
+});
+
+        });
+
+        // Append header and body to table
+        table.appendChild(tableHeader);
+        table.appendChild(tableBody);
+
+        // Append table to container
+        appointmentListContainer.appendChild(table);
+
+
+    } catch (error) {
+        console.error('Error fetching appointments:', error);
+    }
+
+    try {
+console.log(patientName);
+const response = await fetch('/getDoctorsnew_app', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ patientName })
+});
+
+if (!response.ok) {
+    throw new Error('Failed to fetch doctors');
+}
+
+const appointments = await response.json();
+
+console.log(appointments);
+// Display appointments in tabular format
+const appointmentListContainer = document.getElementById('appointmentList2');
+appointmentListContainer.innerHTML = ''; // Clear previous appointments
+
+// Create table
+const table = document.createElement('table');
+table.classList.add('w-full');
+
+
+// Create table header
+const tableHeader = document.createElement('thead');
+tableHeader.innerHTML = `
+    <tr>
+        <th>Appointment ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Day</th>
+        <th>Dr_Name</th>
+        <th>Action</th>
+    </tr>
+`;
+
+// Create table body
+const tableBody = document.createElement('tbody');
+
+appointments.forEach(appointment => {
+    // Create table row for each appointment
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${appointment.Appointment_id}</td>
+        <td>${appointment.Appointment_Date}</td>
+        <td>${appointment.availableTime}</td>
+        <td>${appointment.Appointment_Day}</td>
+        <td>${appointment.D_name}</td>
+        <td><button type="button" class="btn-book">Delete</button></td>
+    `;
+
+
+
+    // const cell = row.insertCell(5);
+    //        if(appointment.isApproved == false)
+    // {
+    //   const textNode = document.createTextNode('Pending');
+    //   cell.appendChild(textNode);
+    // }
+    // else{
+    //     const textNode = document.createTextNode('Approved');
+    //   cell.appendChild(textNode);
+    // }
+
+    // Append row to table body
+    tableBody.appendChild(row);
+
+
+
+
+    
+const button2 = row.querySelector('.btn-book');
+button2.addEventListener('click', function () {
+    
+//const url2 = `dashboard_doctor.html?script7=true&Appid=${appointment.Appointment_id}&AppDate=${appointment.Appointment_Date}&AppTime=${appointment.availableTime}&AppDay=${appointment.Appointment_Day}`;
+//window.location.href = url2;    
+
+
+    delete_apmt(patientName,appointment.Appointment_id,appointment.Appointment_Date,appointment.availableTime,appointment.Appointment_Day, username);
+    window.location.reload(true);
+});
+
+});
+
+// Append header and body to table
+table.appendChild(tableHeader);
+table.appendChild(tableBody);
+
+// Append table to container
+appointmentListContainer.appendChild(table);
+
+
+} catch (error) {
+console.error('Error fetching appointments:', error);
+}
+
+
+}
+
+
+
+
+
+
+//print_fun();
+            // Form submission logic
+            const specializationForm = document.getElementById('specializationForm');
+            specializationForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                const checkboxes = document.querySelectorAll('input[name="specialization"]:checked');
+                const selectedSpecializations = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+                // Map selected specializations to doctor types
+                const mappedTypes = selectedSpecializations.map(specialization => doctorTypes[specialization]);
+
+
+
+                
+
+                // Send mapped types to server for doctor list retrieval
+                try {
+                    const response = await fetch('/getDoctorsByType', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ types: mappedTypes })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch doctors');
+                    }
+
+                    const doctors = await response.json();
+
+                    // Render doctors list
+                    const doctorsListContainer = document.getElementById('doctorsList');
+                    doctorsListContainer.innerHTML = '';
+
+                    doctors.forEach(doctor => {
+                        // Create a table row for each doctor
+                        const row = document.createElement('tr');
+
+                        // Populate the row with doctor's information
+                        row.innerHTML = `
+                            <td>${doctor.username}</td>
+                            <td>${doctor.email}</td>
+                            <td>${doctor.Dr_type}</td>
+                            <td><button type="button" class="btn-book">Book Appointment</button></td>
+                        `;
+
+                        // Append the row to the table body
+                        doctorsListContainer.appendChild(row);
+
+                        // Attach event listener to the newly created button
+                        const button = row.querySelector('.btn-book');
+                        button.addEventListener('click', function () {
+                            printDoctorDetails(doctor.username, doctor.email);
+                        });
+                    });
+
+                } catch (error) {
+                    console.error('Error fetching doctors:', error);
+                }
+            });
+        });
+    </script>
+
+    
+<footer class="footer">
+    <div class="footer-left col-md-4 col-sm-6">
+      <p class="about">
+        <span> About the Website</span> Easily find and book appointments with top doctors at our website
+         </p>
+    </div>
+    <div class="footer-center col-md-4 col-sm-6">
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span> Nehru Marg Kushalgarh</span> Banswara, , Rajasthan 327801 India</p>
+      </div>
+      <div>
+        <i class="fa fa-phone"></i>
+        <p> (+91) </p>7073710757
+      </div>
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="#"> shreyanahta172004@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-right col-md-4 col-sm-6">
+    
+      <p class="menu">
+        <a href="#"> Home</a> |
+        <a href="policy.html"> Terms and Policies</a> |
+        <a href="#"> Contact</a>
+      </p>
+     
+    </div>
+  </footer>
+</body>
+</html>

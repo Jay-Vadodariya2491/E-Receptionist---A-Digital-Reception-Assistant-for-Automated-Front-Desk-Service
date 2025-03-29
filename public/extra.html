@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .nav-link {
+            color: #fff;
+        }
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        /* Button styling */
+        .btn-book {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn-book:hover {
+            background-color: #45a049; /* Dark green */
+        }
+
+
+        /* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px; /* Add border radius for rounded corners */
+    overflow: hidden; /* Hide overflow content */
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    text-align: center; /* Center align table cells */
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Button styling */
+.btn-book {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-book:hover {
+    background-color: #45a049; /* Dark green */
+}
+
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Patient Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="patientName"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-8">
+        <div class="container">
+            <h2 class="text-3xl font-semibold text-center text-blue-500 mb-4">Patient Dashboard</h2>
+            <form id="specializationForm" class="mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Checkbox options -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="generalPhysician" name="specialization" value="General Physician" class="mr-2">
+                        <label for="generalPhysician">General Physician</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="skinHair" name="specialization" value="Skin and Hair" class="mr-2">
+                        <label for="skinHair">Skin and Hair</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="womensHealth" name="specialization" value="Women's Health" class="mr-2">
+                        <label for="womensHealth">Women's Health</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="dentalCare" name="specialization" value="Dental Care" class="mr-2">
+                        <label for="dentalCare">Dental Care</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="childSpecialist" name="specialization" value="Child Specialist" class="mr-2">
+                        <label for="childSpecialist">Child Specialist</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="earNoseThroat" name="specialization" value="Ear-Nose-Throat" class="mr-2">
+                        <label for="earNoseThroat">Ear-Nose-Throat</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="mentalWellness" name="specialization" value="Mental Wellness" class="mr-2">
+                        <label for="mentalWellness">Mental Wellness</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="bonesJoints" name="specialization" value="Bones & Joints" class="mr-2">
+                        <label for="bonesJoints">Bones & Joints</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="cardiac" name="specialization" value="Cardiac" class="mr-2">
+                        <label for="cardiac">Cardiac</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="neuro" name="specialization" value="Neuro" class="mr-2">
+                        <label for="neuro">Neuro</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="orthopedic" name="specialization" value="Orthopedic" class="mr-2">
+                        <label for="orthopedic">Orthopedic</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            </form>
+        </div>
+        <!-- <div id="doctorsList"></div> -->
+        <div>
+            <h3 class="text-xl font-semibold mb-2">Doctors List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Doctor Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="doctorsList"></tbody>
+            </table>
+        </div>
+        <!-- Doctors List -->
+<div>
+    <h3 class="text-xl font-semibold mb-2">Doctor's Appointments</h3>
+    <table id="appointmentList" class="w-full"></table>
+</div>
+
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script>
+     document.addEventListener('DOMContentLoaded', function () {
+    // Display patient name from session storage
+    const patientName = sessionStorage.getItem('loggedInUser');
+    if (patientName) {
+        document.getElementById('patientName').textContent = `Welcome, ${patientName}!`;
+    }
+
+    // Mapping of specialization values to doctor types
+    const doctorTypes = {
+        "General Physician": "MS",
+        "Skin and Hair": "Dermatologist",
+        "Women's Health": "OB/GYN",
+        "Dental Care": "Dentist",
+        "Child Specialist": "Pediatrician",
+        "Ear-Nose-Throat": "ENT",
+        "Mental Wellness": "Psychiatrist",
+        "Bones & Joints": "Orthopedic Surgeon",
+        "Cardiac": "Cardiologist",
+        "Neuro": "Neurologist",
+        "Orthopedic": "Orthopedic Surgeon"
+    };
+
+    // Function to print doctor's details and fetch appointments
+async function printDoctorDetails(username, email) {
+
+        try {
+            const response = await fetch('/getDoctorsnew', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch doctors');
+            }
+
+            const  appointments = await response.json();
+
+
+
+        // Display appointments on the HTML page
+        const appointmentListContainer = document.getElementById('appointmentList');
+        appointmentListContainer.innerHTML = ''; // Clear previous appointments
+       
+        appointments.forEach(appointment => {
+            const appointmentItem = document.createElement('li');
+            appointmentItem.textContent = `Id: ${appointment.Appointment_id},Date: ${appointment.Appointment_Date}, Time: ${appointment.availableTime} , Day: ${appointment.Appointment_Day}`;
+            console.log(appointmentItem)
+            appointmentListContainer.appendChild(appointmentItem);
+        });
+
+    
+    } catch (error) {
+        console.error('Error fetching appointments:', error);
+    }
+}
+
+
+
+
+
+
+    // Form submission logic
+    const specializationForm = document.getElementById('specializationForm');
+    specializationForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const checkboxes = document.querySelectorAll('input[name="specialization"]:checked');
+        const selectedSpecializations = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+        // Map selected specializations to doctor types
+        const mappedTypes = selectedSpecializations.map(specialization => doctorTypes[specialization]);
+
+       // console.log(mappedTypes);
+
+        // Send mapped types to server for doctor list retrieval
+        try {
+            const response = await fetch('/getDoctorsByType', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ types: mappedTypes })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch doctors');
+            }
+
+            const doctors = await response.json();
+
+            // Render doctors list
+            const doctorsListContainer = document.getElementById('doctorsList');
+            doctorsListContainer.innerHTML = '';
+
+            doctors.forEach(doctor => {
+                // Create a table row for each doctor
+                const row = document.createElement('tr');
+
+                // Populate the row with doctor's information
+                row.innerHTML = `
+                    <td>${doctor.username}</td>
+                    <td>${doctor.email}</td>
+                    <td>${doctor.Dr_type}</td>
+                    <td><button type="button" class="btn-book">Book Appointment</button></td>
+                `;
+
+                // Append the row to the table body
+                doctorsListContainer.appendChild(row);
+
+                // Attach event listener to the newly created button
+                const button = row.querySelector('.btn-book');
+                button.addEventListener('click', function () {
+
+                    printDoctorDetails(doctor.username, doctor.email);
+                });
+            });
+
+        } catch (error) {
+            console.error('Error fetching doctors:', error);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

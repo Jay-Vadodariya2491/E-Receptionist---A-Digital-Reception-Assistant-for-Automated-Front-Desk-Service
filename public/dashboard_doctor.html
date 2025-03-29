@@ -1,0 +1,1360 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Dashboard</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .dashboard-container {
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .user-info a {
+            color: #f63f76;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .user-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: #3498db;
+            border-radius: 0;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .navbar-brand:hover,
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa;
+        }
+
+        /* Event List Styles */
+        .event-list {
+            margin-top: 30px;
+        }
+
+        .event-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+
+
+        /* Footer Styles */
+.footer {
+    background-color: #3498db;
+    color: #fff;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+
+.footer h4 {
+    color: #fff;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer ul.list-inline {
+    padding: 0;
+}
+
+.footer ul.list-inline li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer ul.list-inline li a {
+    color: #fff;
+    text-decoration: none;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.dashboard-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+h2 {
+    color: #3498db;
+}
+
+p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.user-info a {
+    color: #f63f76;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.user-info a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    background-color: #3498db;
+    border-radius: 0;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-brand:hover,
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa;
+}
+
+/* Event List Styles */
+.event-list {
+    margin-top: 30px;
+}
+
+.event-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #3498db;
+    color: #fff;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+
+.footer h4 {
+    color: #fff;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.footer ul.list-inline {
+    padding: 0;
+}
+
+.footer ul.list-inline li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer ul.list-inline li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-toggler {
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .navbar-collapse {
+        background-color: #3498db;
+    }
+}
+
+
+
+.dashboard-container {
+    padding: 50px; /* Adjust padding as needed */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1050px; /* Increase the maximum width as needed */
+}
+
+
+
+/*  new table css below */
+
+
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+h2{
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgb(11, 11, 11);
+    padding: 30px 0;
+}
+
+/* Table Styles */
+
+.table-wrapper{
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+    .fl-table {
+        display: block;
+        width: 100%;
+    }
+    .table-wrapper:before{
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 20px;
+        color: white;
+        padding: 0 0 10px;
+    }
+    .fl-table thead, .fl-table tbody, .fl-table thead th {
+        display: block;
+    }
+    .fl-table thead th:last-child{
+        border-bottom: none;
+    }
+    .fl-table thead {
+        float: left;
+    }
+    .fl-table tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+    .fl-table td, .fl-table th {
+        padding: 20px .625em .625em .625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 120px;
+        font-size: 26px;
+        text-overflow: ellipsis;
+    }
+    .fl-table thead th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+    .fl-table tbody tr {
+        display: table-cell;
+    }
+    .fl-table tbody tr:nth-child(odd) {
+        background: none;
+    }
+    .fl-table tr:nth-child(even) {
+        background: transparent;
+    }
+    .fl-table tr td:nth-child(odd) {
+        background: #F8F8F8;
+        border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tr td:nth-child(even) {
+        border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tbody td {
+        display: block;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+/* new fotter  */
+
+
+
+
+.footer {
+  background-color: #414141;
+  width: 100%;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 50px;
+  margin-top: 50px;
+}
+
+.footer .footer-left,
+.footer .footer-center,
+.footer .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+/* footer left*/
+
+.footer .footer-left {
+  width: 33%;
+  padding-right: 15px;
+}
+
+.footer .about {
+  line-height: 20px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer .about span {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer .icons {
+  margin-top: 25px;
+}
+
+.footer .icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+
+/* footer center*/
+
+.footer .footer-center {
+  width: 30%;
+}
+
+.footer .footer-center i {
+  background-color: #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer .footer-center i.fa-envelope {
+  font-size: 17px;
+  line-height: 38px;
+}
+
+.footer .footer-center p {
+  display: inline-block;
+  color: #ffffff;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer .footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer .footer-center p a {
+  color: #0099ff;
+  text-decoration: none;
+}
+
+
+/* footer right*/
+
+.footer .footer-right {
+  width: 35%;
+}
+
+.footer h2 {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer h2 span {
+  color: #0099ff;
+}
+
+.footer .menu {
+  color: #ffffff;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer .menu a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer .menu a:hover {
+  color: #0099ff;
+}
+
+.footer .name {
+  color: #0099ff;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    font-size: 14px;
+  }
+  .footer .footer-left,
+  .footer .footer-center,
+  .footer .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .footer .footer-center i {
+    margin-left: 0;
+  }
+}
+
+    </style>
+
+     <!--=============== REMIXICONS ===============-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+     <!--=============== CSS ===============-->
+     <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- <marquee>After First Appointment Registration users are requested to refresh the dasboard again!!!! </marquee> 
+    <marquee>For Deleting Last Appointment Registered users are requested to logout once and login again!!!! </marquee> 
+   -->
+  
+  
+    <!-- Navigation Bar -->
+
+    <nav class="nav container">
+
+       <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+             <li class="nav__item">
+                <a href="#" class="nav__link">Home</a>
+             </li>
+
+             <li class="nav__item">
+                <a href="appointment.html" class="nav__link">Appointment</a>
+             </li>
+
+             <li class="nav__item">
+                <a href="appointmentupdate.html" class="nav__link">Update Appointment</a>
+             </li>
+
+             <li class="nav__item">
+                <a href="settings.html" class="nav__link">Settings</a>
+             </li>
+
+             <li class="nav__item">
+                <a href="/index.html" class="nav__link">Logout</a>
+                <!-- <div class="user-info" id="user-info"></div> -->
+             </li>
+
+             <li class="nav__item">
+                <div class="user-info" id="user-info"></div>
+             </li>
+          </ul>
+
+          <!-- Close button -->
+          <div class="nav__close" id="nav-close">
+             <i class="ri-close-line"></i>
+          </div>
+       </div>
+
+      
+    </nav>
+
+
+
+        <div>
+            
+         <img src="b8.jpg" height="400" width="1420"> 
+        </div>
+  
+        <h2>Registered Appointments:</h2>
+    
+
+    <!-- <div id="result"></div> --> 
+    <!--  aa comment karyu che -->
+    
+
+
+    <div id="dashboard-event-details">
+    <div class="table-wrapper">
+        <table class="fl-table" id="event-table-body">
+            <thead>
+            <tr>
+                <th>Appointment_id</th>
+                    <th>Appointment_Date</th>
+                    <th>Appointment_Day</th>
+                    <th>AvailableTime</th>
+                    <th>loggedInUser</th>
+                    <th>Action</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+<h2> Booked Appointments:</h2>
+    <!-- User Appointment Content -->
+<div id="dashboard2-container">
+
+    
+    <table class="fl-table" id="user-table-body2">
+        <thead>
+            <tr>
+                <th>P_name</th>
+                <th>Appointment_id</th>
+                <th>Appointment_Date</th>
+                <th>A_Time</th>
+                <th>Appointment_Day</th>
+                <th>D_name</th>
+                <th>Approval</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <!-- Table content will be dynamically added here -->
+    </table>
+</div>
+
+
+
+<!-- <button id="startChat">Start Chat</button> -->
+
+
+
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+
+
+
+             function myFunction() {
+              //  console.log('function will be called!!!!!');
+       // runCode();  
+    }
+
+      document.addEventListener('DOMContentLoaded', function () {
+ 
+    const urlParams = new URLSearchParams(window.location.search);
+    const isScript1 = urlParams.get("script1") === "true";
+    const isScript2 = urlParams.get("script2") === "true";
+    const isScript3 = urlParams.get("script3") === "true";
+
+
+
+    
+
+    // Assuming the button for starting chat has an ID of 'startChat'
+    // const startChatButton = document.getElementById('startChat');
+
+    // startChatButton.addEventListener('click', function () {
+    //     const socket = io();
+    //     // Emit a chat initiation event
+    //     socket.emit('chat_initiation', { role: 'doctor' });
+    // });
+
+
+        
+    if (isScript1)
+     {
+       // console.log('hajsk');
+        const appointmentDate = urlParams.get("appointmentDate");
+        const appointmentDay = urlParams.get("appointmentDay");
+        const availableTime = urlParams.get("availableTime");
+        const loggedInUser = sessionStorage.getItem("loggedInUser") || urlParams.get("ffusername");
+       // document.getElementById('user-info').innerHTML = `Logged in as: <a href="#">${loggedInUser}</a>`;
+       
+        addEventToDatabase(appointmentDate, appointmentDay, availableTime,loggedInUser);
+    }
+    //var k=1;
+    if(isScript2)
+    {
+        //k=0;
+       // fusername
+        const ff_user = urlParams.get("ffusername");
+        const f_email = urlParams.get("femail");
+        const f_pass = urlParams.get("fpassword");
+       // console.log("hahahahah123");
+        console.log(sessionStorage.getItem("loggedInUser"));
+       // console.log("hi hello!!!");
+        
+       
+     //   document.getElementById('user-info').innerHTML = `Logged in as: <a href="#">${f_user}</a>`;
+   
+    }
+    if(isScript3)
+    {
+        const Appid = urlParams.get("n_Appid");
+        const AppDate = urlParams.get("n_AppDate");
+        const AppTime = urlParams.get("n_AppTime");
+        const loggedInUser = sessionStorage.getItem("loggedInUser")
+       // console.log("kkk");
+       // console.log(sessionStorage.getItem("loggedInUser"));
+
+       // console.log(e_name+ " "+e_date+ " "+e_details);
+       // console.log('hii');
+       
+        updateevent(Appid,AppDate,AppTime,loggedInUser);
+    }
+
+
+  
+
+
+    fun_display_appmts(sessionStorage.getItem("loggedInUser"));
+
+
+   // const urlParams = new URLSearchParams(window.location.search);
+        
+//    const isScript7 = urlParams.get("script7") === "true";
+//             if(isScript7)
+//         {
+
+//             const App_id= urlParams.get("Appid");
+//             const App_Date= urlParams.get("AppDate");
+//             const App_Time= urlParams.get("AppTime");
+//             const App_Day= urlParams.get("AppDay");
+
+//             console.log("pathakkk"+App_id+App_Date+App_Time+App_Day+"lakshin")
+//         }   
+
+
+
+        displayEntireTable();
+
+      
+            const loggedInUser =  sessionStorage.getItem("loggedInUser") || urlParams.get("ffusername") ;
+          //  console.log(loggedInUser);
+            document.getElementById('user-info').innerHTML = `Logged in as: <a href="#">${loggedInUser}</a>`;
+  
+       
+            
+    
+});
+
+
+// async function fun_display_appmts(D_name)
+// {
+
+
+//     try {
+//             const response = await fetch('/getAllapmts_Doctor'); 
+
+//             if (!response.ok) {
+//                 throw new Error(`HTTP error! Status: ${response.status}`);
+//             }
+
+//             const users = await response.json();
+           
+//             updateEventList(users);
+//         } catch (error) {
+//             console.error('Error fetching users:', error);
+//         }
+
+
+
+// }
+
+
+async function fun_display_appmts(D_name) {
+    try {
+        const response = await fetch(`/getAllapmts_Doctor?D_name=${D_name}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const users = await response.json();
+       // console.log("lakshinnnnnn");
+        console.log(users);
+        updateEventList(users);
+        //console.log("pathakkkkkk");
+    } catch (error) {
+        console.error('Error fetching users:', error);
+    }
+}
+
+
+
+
+function updateEventList(events) {
+
+if (events && events.length > 0 && Array.isArray(events)) {
+// console.log("hiii+hello");
+}
+else{
+//      console.log("hiii2");
+
+document.getElementById('dashboard2-container').innerHTML = `
+<h2>No Appointments!!!!</h2>
+`;
+}
+
+const tableBody = document.getElementById('user-table-body2');
+//console.log(tableBody)
+
+tableBody.innerHTML=`<thead>
+<tr>
+                <th>P_name</th>
+                <th>Appointment_id</th>
+                <th>Appointment_Date</th>
+                <th>A_Time</th>
+                <th>Appointment_Day</th>
+                <th>D_name</th>
+                <th>Approval</th>
+                <th>Status</th>
+                <th>Action</th>
+</tr>
+</thead>`;
+
+if (events && Array.isArray(events) && events.length>0 ) {
+
+
+
+
+events.forEach(event => {
+
+
+const row = tableBody.insertRow();
+const cell1 = row.insertCell(0);
+const cell2 = row.insertCell(1);
+const cell3 = row.insertCell(2);
+const cell4 = row.insertCell(3);
+const cell5 = row.insertCell(4);
+const cell6 = row.insertCell(5);
+
+cell1.textContent = event.P_name;
+cell2.textContent = event.Appointment_id;
+cell3.textContent = event.Appointment_Date;
+cell4.textContent = event.availableTime;
+cell5.textContent = event.Appointment_Day;
+cell6.textContent = event.D_name;
+
+
+
+
+// Add a delete button with an onclick event
+
+const approvalbutton = document.createElement('button');
+approvalbutton.textContent = 'Approval';
+approvalbutton.className = 'btn btn-danger btn-sm';
+
+// Check if the button was previously approved
+const isApproved = localStorage.getItem(`approval-${event.Appointment_id}`);
+        if (isApproved === 'true') {
+            approvalbutton.className = 'btn btn-success btn-sm';
+        }
+
+approvalbutton.onclick = function () {
+//console.log("pathak12345");
+acceptuserrequest(event.P_name,event.Appointment_id);
+approvalbutton.className = 'btn btn-success btn-sm';
+
+localStorage.setItem(`approval-${event.P_name}-${event.Appointment_id}`, 'true');
+
+// window.location.reload(true);
+};
+
+
+
+const cell7 = row.insertCell(6);
+cell7.appendChild(approvalbutton);   
+
+
+
+const cell8 = row.insertCell(7);
+           if(event.isApproved == false)
+    {
+      const textNode = document.createTextNode('Pending');
+      cell8.appendChild(textNode);
+    }
+    else{
+        const textNode = document.createTextNode('Approved');
+      cell8.appendChild(textNode);
+    }
+
+
+
+
+
+
+
+    const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'btn btn-danger btn-sm';
+
+
+            deleteButton.onclick = function () {
+                //console.log("pathak12345");
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const loggedInUser =  sessionStorage.getItem("loggedInUser") || urlParams.get("ffusername") ;
+
+
+                deleteAppmt(loggedInUser, event.Appointment_id);
+
+                console.log(loggedInUser+ event.Appointment_id+"pathakkk")
+                         window.location.reload(true);
+
+              };
+
+            const cell9 = row.insertCell(8);
+            cell9.appendChild(deleteButton);
+
+
+
+
+
+
+});
+
+
+}
+else
+{
+
+  document.getElementById('dashboard2-container').innerHTML = `
+      <h2>No Events.</h2>
+  `;
+}
+
+
+}
+
+
+
+async function deleteAppmt(loggedInUser,Appointment_id)
+    {
+
+
+        fetch('/delete_apmt_doctor', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            Appointment_id: Appointment_id,
+            D_name: loggedInUser,
+        }),
+    })
+    .then(response => response.json())
+    .then( data => {
+        
+        //console.log(data);
+        if (data.success) {
+           
+            alert("Booked Appointment deleted successfully!");
+            //const tableBody = document.getElementById('event-table-body');
+            //tableBody.innerHTML='';
+           // displayEntireTable();
+              // display_Table(data); // Update the displayed table
+
+        }
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
+
+
+
+    }
+
+
+
+
+async function acceptuserrequest(P_name, Appointment_id) {
+    try {
+        // console.log(username+eventname+"lakshitttt");
+        const response = await fetch('/approveUserApmt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                P_name,
+                Appointment_id,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+       // console.log(data);
+
+        if (data.success) {
+            console.log('User appointment approved successfully!');
+            // You may want to update the UI or perform other actions here
+        } else {
+            console.error('Error approving user appointment:', data.message);
+            // Handle the error or display a message to the user
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+
+
+
+
+
+
+async  function updateevent(Appid, AppDate, AppTime,n_loggedInUser)
+    {
+
+         // Your date string
+const date = new Date(AppDate); // Create a Date object from the string
+
+// Days of the week as an array
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+// Get the day of the week (0 for Sunday, 1 for Monday, etc.)
+const dayIndex = date.getDay();
+
+// Get the corresponding day name from the array
+const correspondingDay = daysOfWeek[dayIndex];
+console.log(correspondingDay);
+
+console.log(Appid+ AppDate+ AppTime+ n_loggedInUser);
+
+        try {
+            //console.log(eventName+"pathakkkkk"+n_eventDetails+n_eventDate);
+        // Perform AJAX request to the server settings endpoint
+        const response = await fetch('/updateevent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ loggedInUser: n_loggedInUser,Appointment_Date: AppDate,availableTime: AppTime,Appointment_id: Appid , Appointment_Day: correspondingDay  }),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const result = await response.json();
+  
+        console.log('Response from server:', result);
+  
+        // Handle success or error response from the server
+        if (result.success) {
+          console.log('Appointment update successful!');
+          alert(result.message);
+  
+          // Redirect to the dashboard after saving settings
+          window.location.href = '/dashboard_doctor.html'; // Adjust the path accordingly
+        } else {
+          // Settings update failed, display an error message or take appropriate action
+          console.error('Appointment update failed:', result.message);
+          alert(result.message);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle errors here
+        alert('An unexpected error occurred. Please try again later.');
+      }
+    }
+
+
+    
+    function deleteEvent(availableTime, loggedInUser) {
+     //   console.log("Deleting event:", eventName, loggedInUser);
+    deleteEventFromDatabase(availableTime, loggedInUser);
+ 
+}
+
+
+
+    function addEventToDatabase(appointmentDate, appointmentDay, availableTime,loggedInUser) {
+
+        fetch('/addEvent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                appointmentDate,
+                appointmentDay,
+                availableTime,
+                loggedInUser,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+ 
+           // console.log(data);
+            const tableBody = document.getElementById('event-table-body');
+            tableBody.innerHTML='';
+            displayEntireTable();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        
+    }
+
+
+    function display_Table(events) {
+
+    //    console.log("lakshin12345")
+
+       // console.log(events);
+
+        if (events && events.length > 0 && Array.isArray(events)) {
+              //  console.log("hiii");
+        }
+        else
+        {
+            document.getElementById('dashboard-event-details').innerHTML = `
+        <h2>No Appointments registered yet.</h2>`;
+        }
+
+  
+    const tableBody = document.getElementById('event-table-body');
+    
+        tableBody.innerHTML=`<thead>
+                <tr>
+                    <th>Appointment_id</th>
+                    <th>Appointment_Date</th>
+                    <th>Appointment_Day</th>
+                    <th>AvailableTime</th>
+                    <th>loggedInUser</th>
+                    <th>Action</th>
+                </tr>
+            </thead>`;
+            
+       // document.getElementById('event-table-body').innerHTML = ``;
+
+
+
+    if (events && Array.isArray(events) && events.length>0 ) {
+      
+        //console.log(events);
+
+        events.forEach(event => {
+
+
+            const row = tableBody.insertRow();
+            const cell0 = row.insertCell(0);
+            const cell1 = row.insertCell(1);
+            const cell2 = row.insertCell(2);
+            const cell3 = row.insertCell(3);
+            const cell4 = row.insertCell(4);
+
+            cell0.textContent = event.Appointment_id;
+            cell1.textContent = event.Appointment_Date;
+            cell2.textContent = event.Appointment_Day;
+            cell3.textContent = event.availableTime;
+            cell4.textContent = event.loggedInUser;
+
+            // Add a delete button with an onclick event
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'btn btn-danger btn-sm';
+
+
+            deleteButton.onclick = function () {
+                //console.log("pathak12345");
+                deleteEvent(event.availableTime, event.loggedInUser);
+
+                // window.location.reload(true);
+
+              };
+
+            const cell5 = row.insertCell(5);
+            cell5.appendChild(deleteButton);
+
+            
+    //         const cell6 = row.insertCell(6);
+    //        if(event.isApproved == false)
+    // {
+    //   const textNode = document.createTextNode('Pending');
+    //   cell6.appendChild(textNode);
+    // }
+    // else{
+    //     const textNode = document.createTextNode('Approved');
+    //   cell6.appendChild(textNode);
+    // }
+          
+
+            
+        });
+
+      
+    } 
+    else
+     {
+     
+        document.getElementById('dashboard-event-details').innerHTML = `
+            <h2>No Appointments registered yet.</h2>
+        `;
+    }
+}
+
+
+    function deleteEventFromDatabase(availableTime, loggedInUser) {
+    fetch('/deleteEvent', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            availableTime: availableTime,
+            loggedInUser: loggedInUser,
+        }),
+    })
+    .then(response => response.json())
+    .then( data => {
+        
+        //console.log(data);
+        if (data.success) {
+           // console.log("pathak12");
+            //console.log(data);
+            const tableBody = document.getElementById('event-table-body');
+            tableBody.innerHTML='';
+            displayEntireTable();
+              // display_Table(data); // Update the displayed table
+        }
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+function displayEntireTable() {
+
+const loggedInUser = sessionStorage.getItem("loggedInUser");
+//const urlParams = new URLSearchParams(window.location.search);
+//const loggedInUser = urlParams.get("ffusername");
+
+//console.log("pathak");
+fetch(`/getAllEvents?loggedInUser=${loggedInUser}`)
+    .then(response => response.json())
+    .then(data => {
+      //  console.log(loggedInUser);
+        //console.log(data);
+    
+        display_Table(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<footer class="footer">
+    <div class="footer-left col-md-4 col-sm-6">
+      <p class="about">
+        <span> About the Website</span> Easily find and book appointments with top doctors at our website
+         </p>
+    </div>
+    <div class="footer-center col-md-4 col-sm-6">
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span> Nehru Marg Kushalgarh</span> Banswara, , Rajasthan 327801 India</p>
+      </div>
+      <div>
+        <i class="fa fa-phone"></i>
+        <p> (+91) </p>7073710757
+      </div>
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="#"> shreyanahta172004@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-right col-md-4 col-sm-6">
+    
+      <p class="menu">
+        <a href="#"> Home</a> |
+        <a href="policy.html"> Terms and Policies</a> |
+        <a href="#"> Contact</a>
+      </p>
+     
+    </div>
+  </footer>
+
+
+
+
+
+
+</body>
+
+</html>

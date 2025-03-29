@@ -1,0 +1,57 @@
+/* Reset some default browser styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* Light blue background */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White content background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #1a73e8; /* Primary blue for header */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    color: #1a73e8; /* Blue accent color */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    border-left: 5px solid #1a73e8;
+    padding-left: 10px;
+}
+
+.section p, .section ul {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555; /* Medium gray for body text */
+}
+
+.section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+strong {
+    color: #333; /* Darker gray for emphasis */
+}

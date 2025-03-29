@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="This is a demo of Web integration of Razorpay for Doctor Appointment System" author="Doctor Appointment System" />
+    <title>Doctor Appointment - Razorpay Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #2300a3;
+            margin-bottom: 10px;
+        }
+        
+        h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        
+        ul li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .appointment-details {
+            font-weight: bold;
+            color: #2300a3;
+            margin-bottom: 15px;
+        }
+        
+        .payment-info {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        #pay-button {
+            background-color: #2300a3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        
+        #pay-button:hover {
+            background-color: #1d0087;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Doctor Appointment Booking</h2>
+        <h3>Book an Appointment with <span id="doctor-name">Dr. John Doe</span></h3>
+        <div class="appointment-details">
+            <p id="appointment-date"></p>
+            <p id="appointment-time"></p>
+            <p>Patient: <span id="patient-name">John Doe</span></p>
+        </div>
+
+        <ul>
+            <li>Consultation Fee: ₹500</li>
+            <li>Available for Online and In-Person Consultation</li>
+            <li>Booking Confirmed after Payment</li>
+        </ul>
+
+        <div class="payment-info">Cost: ₹500</div>
+        <button id="pay-button">Pay Now & Book Appointment</button>
+    </div>
+
+    <!-- Payment Checkout -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const isScript8 = urlParams.get("script8") === "true";
+
+        if (isScript8) {
+            const appointmentDate = urlParams.get("AppDate");
+            const appointmentDay = urlParams.get("app_day");
+            const availableTime = urlParams.get("AppTime");
+            const doctorName = urlParams.get("d_name");
+            const patientName = sessionStorage.getItem("loggedInUser") || urlParams.get("patientName");
+
+            // Display dynamic values on the page
+            document.getElementById("doctor-name").textContent = doctorName;
+            document.getElementById("appointment-date").textContent = `Appointment Date: ${appointmentDay}, ${appointmentDate}`;
+            document.getElementById("appointment-time").textContent = `Time: ${availableTime}`;
+            document.getElementById("patient-name").textContent = patientName;
+        }
+
+        var options = {
+            "key": "rzp_test_fiIwmRET6CApc2",
+            "amount": "50000",  // Amount in paise (₹500 = 50000 paise)
+            "currency": "INR",
+            "name": "Doctor Appointment Booking",
+            "description": "Consultation with Dr. " + (isScript8 ? urlParams.get("d_name") : "John Doe"),
+            "image": "https://fastly.picsum.photos/id/67/200/300.jpg?hmac=GntzjckKE7-naeHFrr8ZEIIaj3Bm-Iln4f844p1Np08",
+            "order_id": "order_HdPuQW0s9hY9AU",
+            "handler": function (response) {
+                console.log(response);
+                alert("Payment Successful! Your appointment is booked.");
+                window.location.href = "dashboard.html";
+            },
+            "prefill": {
+                "contact": "9876543210",
+                "name": (isScript8 ? urlParams.get("patientName") : "John Doe"),
+                "email": "johndoe@gmail.com"
+            },
+            "notes": {
+                "doctor": "Dr. " + (isScript8 ? urlParams.get("d_name") : "John Doe"),
+                "consultation_fee": "₹500",
+                "appointment_type": "Online/In-person"
+            },
+            "theme": {
+                "color": "#2300a3"
+            }
+        };
+
+        var razorpayObject = new Razorpay(options);
+        console.log(razorpayObject);
+
+
+        razorpayObject.on('payment.failed', function (response) {
+            console.log(response);
+            alert("Payment Failed. Please try again.");
+        });
+
+        document.getElementById('pay-button').onclick = function (e) {
+            razorpayObject.open();
+            e.preventDefault();
+        }
+    </script> -->
+
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const isScript8 = urlParams.get("script8") === "true";
+    
+        if (isScript8) {
+            const appointmentDate = urlParams.get("AppDate");
+            const appointmentDay = urlParams.get("app_day");
+            const availableTime = urlParams.get("AppTime");
+            const doctorName = urlParams.get("d_name");
+            const patientName = sessionStorage.getItem("loggedInUser") || urlParams.get("patientName");
+    
+            // Display dynamic values on the page
+            document.getElementById("doctor-name").textContent = doctorName;
+            document.getElementById("appointment-date").textContent = `Appointment Date: ${appointmentDay}, ${appointmentDate}`;
+            document.getElementById("appointment-time").textContent = `Time: ${availableTime}`;
+            document.getElementById("patient-name").textContent = patientName;
+        }
+    
+        document.getElementById('pay-button').onclick = async function (e) {
+            e.preventDefault();
+    
+            // Fetch order details from the server
+            try {
+                const response = await fetch('/createOrder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: 50000, // Amount in paise
+                        currency: "INR",
+                        receipt: "order_rcptid_11",
+                        notes: {
+                            appointmentDate: document.getElementById("appointment-date").textContent,
+                            doctorName: document.getElementById("doctor-name").textContent,
+                            patientName: document.getElementById("patient-name").textContent,
+                        }
+                    }),
+                });
+    
+                const order = await response.json();
+    
+                // Initialize Razorpay options
+                var options = {
+                    "key": "rzp_test_8lEtdi5oYWoGD9",
+                    "amount": order.amount,
+                    "currency": order.currency,
+                    "name": "Doctor Appointment Booking",
+                    "description": `Consultation with Dr. ${document.getElementById("doctor-name").textContent}`,
+                    "image": "https://fastly.picsum.photos/id/67/200/300.jpg?hmac=GntzjckKE7-naeHFrr8ZEIIaj3Bm-Iln4f844p1Np08",
+                    "order_id": order.id,
+                    "handler": function (response) {
+                        sessionStorage.setItem('flag', 1);
+                        alert("Payment Successful! You can book your appointment now.");
+                       // console.log(response);
+                        window.location.href = "dashboard.html";
+                    },
+                    "prefill": {
+                        "contact": "9876543210",
+                        "name": document.getElementById("patient-name").textContent,
+                        "email": "johndoe@gmail.com"
+                    },
+                    "notes": order.notes,
+                    "theme": {
+                        "color": "#2300a3"
+                    }
+                };
+    
+                var razorpayObject = new Razorpay(options);
+
+                razorpayObject.on('payment.failed', function (response) {
+                    console.log(response);
+                      sessionStorage.setItem('flag', 0);
+                    alert("Payment Failed. Please try again.");
+                });
+    
+                razorpayObject.open();
+            } catch (error) {
+                console.error("Error creating order:", error);
+                alert("Failed to initiate payment. Please try again.");
+            }
+        }
+    </script>
+    
+</body>
+
+</html>

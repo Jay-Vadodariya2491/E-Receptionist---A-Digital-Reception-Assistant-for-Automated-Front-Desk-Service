@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .dashboard-container {
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .dashboard2-container {
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* User List Styles */
+        .user-list {
+            margin-top: 30px;
+        }
+
+        .user-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+
+        .user-item .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-item button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .user-item button:hover {
+            background-color: #c82333;
+        }
+
+        /* Update User Modal Styles */
+        .update-user-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #3498db; /* Blue background color */
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            background-color: #2980b9;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .dashboard-container,
+            .dashboard2-container {
+                padding: 30px;
+            }
+
+            /* Adjust other styles as needed for smaller screens */
+        }
+
+        @media only screen and (max-width: 576px) {
+            .dashboard-container,
+            .dashboard2-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Admin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Events</a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="settings.html">Settings</a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" id="logoutid" href="/index.html">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+<!-- Admin Dashboard Content -->
+<div class="dashboard-container">
+
+    <h2>Admin Dashboard</h2>
+    <table class="table" id="user-table-body">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Password</th>
+                <th>IsDoctor</th>
+                <th>DrType</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <!-- Table content will be dynamically added here -->
+    </table>
+
+
+    
+    <div class="user-list" id="user-list">
+        <!-- User details will be dynamically added here -->
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+   
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const isScript4 = urlParams.get("script4") === "true";
+        const isScript5 = urlParams.get("script5") === "true";
+        
+        if (isScript4) {
+            const admin = urlParams.get("ffusername");
+            //console.log(admin);
+        }
+        if (isScript5) {
+            const admin = urlParams.get("admin_name");
+           // console.log(admin);
+        }
+
+      
+
+        // Fetch all users and update the user list
+        try {
+            const response = await fetch('/getAllUsers'); // Replace with your actual server URL
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const users = await response.json();
+            //console.log(users);
+            // Update the user list
+            updateUsersList(users);
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+
+        //ayya problem che
+
+          // Fetch all events and update the event list
+        //   try {
+        //     const response = await fetch('/getAllEvents_Admin'); 
+
+        //     if (!response.ok) {
+        //         throw new Error(`HTTP error! Status: ${response.status}`);
+        //     }
+
+        //     const users = await response.json();
+        //    // console.log("lakshinnnnnnnn");
+        //    // console.log(users);
+        //     // Update the user list
+        //    // updateEventList(users);
+        // } catch (error) {
+        //     console.error('Error fetching users:', error);
+        // }
+
+
+
+        // try {
+        //     const response = await fetch('/getUnapproved_Events_Admin', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+                
+        //     }),
+        // });
+        // //const response = await fetch('/getUnapproved_Events_Admin'); 
+
+        //     if (!response.ok) {
+        //         throw new Error(`HTTP error! Status: ${response.status}`);
+        //     }
+
+        //     const event = await response.json();
+            
+        //    // console.log(event);
+        //     // Update the event list
+        //    // updateEventList(users);
+        //      clearApprovedEvents(event);
+          
+        // } catch (error) {
+         
+        //     console.error('No Pending Events!!!');
+        // }
+
+
+    
+
+
+
+        function updateEventList(events) {
+
+            if (events && events.length > 0 && Array.isArray(events)) {
+       // console.log("hiii+hello");
+}
+else{
+//      console.log("hiii2");
+
+    document.getElementById('dashboard2-container').innerHTML = `
+<h2>No Events</h2>
+`;
+}
+
+const tableBody = document.getElementById('user-table-body2');
+//console.log(tableBody)
+
+tableBody.innerHTML=`<thead>
+        <tr>
+            <th>Username</th>
+                <th>EventName</th>
+                <th>EventDate</th>
+                <th>EventDetails</th>
+                <th>Action</th>
+        </tr>
+    </thead>`;
+
+    if (events && Array.isArray(events) && events.length>0 ) {
+
+
+
+
+        events.forEach(event => {
+      
+      
+      const row = tableBody.insertRow();
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      const cell3 = row.insertCell(2);
+      const cell4 = row.insertCell(3);
+
+      cell1.textContent = event.loggedInUser;
+      cell2.textContent = event.eventName;
+      cell3.textContent = event.eventDate;
+      cell4.textContent = event.eventDetails;
+        
+    
+      // Add a delete button with an onclick event
+      
+      const approvalbutton = document.createElement('button');
+      approvalbutton.textContent = 'Approval';
+      approvalbutton.className = 'btn btn-danger btn-sm';
+
+  // Check if the button was previously approved
+  const isApproved = localStorage.getItem(`approval-${event.loggedInUser}-${event.eventName}`);
+                    if (isApproved === 'true') {
+                        approvalbutton.className = 'btn btn-success btn-sm';
+                    }
+
+      approvalbutton.onclick = function () {
+          //console.log("pathak12345");
+          acceptuserrequest(event.loggedInUser,event.eventName);
+      approvalbutton.className = 'btn btn-success btn-sm';
+
+      localStorage.setItem(`approval-${event.loggedInUser}-${event.eventName}`, 'true');
+         
+          // window.location.reload(true);
+        };
+
+      const cell5 = row.insertCell(4);
+      cell5.appendChild(approvalbutton);   
+
+  });
+
+
+    }
+    else
+           {
+           
+              document.getElementById('dashboard2-container').innerHTML = `
+                  <h2>No Events.</h2>
+              `;
+          }
+
+    
+        }
+
+
+
+
+
+        // Function to update the user list in the HTML
+        function updateUsersList(users) {
+           
+           // console.log(users);
+
+if (users && users.length > 0 && Array.isArray(users)) {
+       // console.log("hiii");
+}
+else{
+//      console.log("hiii2");
+
+    document.getElementById('dashboard-container').innerHTML = `
+<h2>No Users</h2>
+`;
+}
+
+
+const tableBody = document.getElementById('user-table-body');
+//console.log(tableBody)
+
+tableBody.innerHTML=`<thead>
+        <tr>
+            <th>Username</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Password</th>
+                <th>IsDoctor</th>
+                <th>DrType</th>
+                <th>Delete</th>
+                <th>Update</th>
+        </tr>
+    </thead>`;
+
+
+    if (users && Array.isArray(users) && users.length>0 ) {
+      
+     // console.log(users);
+      
+              users.forEach(event => {
+      
+      
+                  const row = tableBody.insertRow();
+                  const cell1 = row.insertCell(0);
+                  const cell2 = row.insertCell(1);
+                  const cell3 = row.insertCell(2);
+                  const cell4 = row.insertCell(3);
+                  const cell5 = row.insertCell(4);
+                  const cell6 = row.insertCell(5);
+      
+                  cell1.textContent = event.username;
+                  cell2.textContent = event.email;
+                  cell3.textContent = event.isAdmin;
+                  cell4.textContent = event.password;
+                  cell5.textContent = event.isDoctor;
+                  cell6.textContent = event.Dr_type;
+                    
+                
+                  // Add a delete button with an onclick event
+                  
+                  const deleteButton = document.createElement('button');
+                  deleteButton.textContent = 'Delete';
+                  deleteButton.className = 'btn btn-danger btn-sm';
+      
+      
+                  deleteButton.onclick = function () {
+                   //   console.log("pathak12345");
+                     deleteuser(event.username);
+                      // window.location.reload(true);
+                    };
+      
+                  const cell7 = row.insertCell(6);
+                  cell7.appendChild(deleteButton);
+      
+                  
+                  const updateButton = document.createElement('button');
+                  updateButton.textContent = 'Update';
+                  updateButton.className = 'btn btn-danger btn-sm';
+
+                  updateButton.onclick = function () {
+                     // console.log("update onclick");
+
+                      //take input new email and new pwd from user 
+                     updateuser(event.username);
+                      // window.location.reload(true);
+                    };
+
+
+                  const cell8= row.insertCell(7);
+                  cell8.appendChild(updateButton);
+      
+              });
+            
+          } 
+          else
+           {
+           
+              document.getElementById('dashboard-container').innerHTML = `
+                  <h2>No users.</h2>
+              `;
+          }
+
+
+        }
+
+        function updateuser(username) {
+
+            const newEmail = prompt('Enter new email:'); // You can replace this with your own form or UI for input
+            const newPassword = prompt('Enter new password:'); // You can replace this with your own form or UI for input
+
+            if (newEmail !== null || newPassword !== null) {
+                updateUserDetails(username, newEmail, newPassword);
+            }
+        }
+
+
+
+    async function acceptuserrequest(loggedInUser, eventName) {
+    try {
+        // console.log(username+eventname+"lakshitttt");
+        const response = await fetch('/approveUserEvent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                loggedInUser,
+                eventName,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+       // console.log(data);
+
+        if (data.success) {
+            console.log('User event approved successfully!');
+            // You may want to update the UI or perform other actions here
+        } else {
+            console.error('Error approving user event:', data.message);
+            // Handle the error or display a message to the user
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+
+
+
+       
+    async function displayEntireTable()
+    {
+      
+        try {
+            const response = await fetch('/getAllUsers'); 
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const users = await response.json();
+          //  console.log(users);
+            // Update the user list
+            updateUsersList(users);
+
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    }
+
+    async function updateUserDetails(username, newEmail, newPassword) {
+        
+            fetch('/updateuser', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        username,
+        newEmail,
+        newPassword
+    }),
+})
+.then(response => response.json())
+.then(data => {
+   // console.log(data);
+    if (data.success) {
+        console.log('User details updated successfully!');
+        const tableBody = document.getElementById('user-table-body');
+        tableBody.innerHTML = '';
+        displayEntireTable();
+    } else {
+        console.error('Error updating user details:', data.message);
+    }
+})
+.catch(error => {
+    console.error('Fetch error:', error);
+});
+
+
+
+
+
+
+        }
+
+
+  function deleteuser(username)
+  {
+    fetch('/deleteuser', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username,
+        }),
+    })
+    .then(response => response.json())
+    .then( data => {
+        
+        console.log(data);
+        if (data.success) {
+            const tableBody = document.getElementById('user-table-body');
+            tableBody.innerHTML='';
+            displayEntireTable();
+        }
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+  }
+
+
+
+
+// here 
+
+        function clearApprovedEvents(events) {
+
+          //  console.log("lakshit");
+            //console.log(events);
+            const tableBody = document.getElementById('user-table-body2');
+
+            tableBody.innerHTML = `<thead>
+                <tr>
+                    <th>Username</th>
+                    <th>EventName</th>
+                    <th>EventDate</th>
+                    <th>EventDetails</th>
+                    <th>Action</th>
+                </tr>
+            </thead>`;
+
+
+
+            if (events && Array.isArray(events) && events.length>0 ) {
+
+
+
+
+events.forEach(event => {
+
+
+const row = tableBody.insertRow();
+const cell1 = row.insertCell(0);
+const cell2 = row.insertCell(1);
+const cell3 = row.insertCell(2);
+const cell4 = row.insertCell(3);
+
+cell1.textContent = event.loggedInUser;
+cell2.textContent = event.eventName;
+cell3.textContent = event.eventDate;
+cell4.textContent = event.eventDetails;
+
+
+// Add a delete button with an onclick event
+
+const approvalbutton = document.createElement('button');
+approvalbutton.textContent = 'Approval';
+approvalbutton.className = 'btn btn-danger btn-sm';
+
+// Check if the button was previously approved
+const isApproved = localStorage.getItem(`approval-${event.loggedInUser}-${event.eventName}`);
+            if (isApproved === 'true') {
+                approvalbutton.className = 'btn btn-success btn-sm';
+            }
+
+approvalbutton.onclick = function () {
+ // console.log("pathak12345");
+  acceptuserrequest(event.loggedInUser,event.eventName);
+approvalbutton.className = 'btn btn-success btn-sm';
+
+localStorage.setItem(`approval-${event.loggedInUser}-${event.eventName}`, 'true');
+ 
+  // window.location.reload(true);
+};
+
+const cell5 = row.insertCell(4);
+cell5.appendChild(approvalbutton);   
+
+});
+
+
+}
+else
+   {
+   
+      document.getElementById('dashboard2-container').innerHTML = `
+          <h2>No Events.</h2>
+      `;
+  }
+
+            
+        }
+
+});
+ 
+</script>
+
+</body>
+</html>
+
+
+
