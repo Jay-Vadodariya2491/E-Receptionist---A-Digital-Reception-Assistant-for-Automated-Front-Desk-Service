@@ -274,7 +274,7 @@ app.post('/createadmin', async (req, res) => {
 
           const authorizationHeader = req.headers['authorization'];
       
-        const isAdminRequest = authorizationHeader === 'GIVEUSERRIGHTS'; 
+        const isAdminRequest = authorizationHeader === 'GIVEADMINRIGHTS'; 
        // console.log(authorizationHeader);
         if (!isAdminRequest) {
             return res.status(403).json({ success: false, message: 'Unauthorized request' });
